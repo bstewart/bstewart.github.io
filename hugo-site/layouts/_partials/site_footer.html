@@ -1,0 +1,17 @@
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <strong>{{ .Site.Params.profile.name }}</strong><br>
+      {{ .Site.Params.profile.title }}, {{ .Site.Params.profile.institution }}
+    </div>
+    <div class="footer-links">
+      <a href="{{ "bio/" | relURL }}">Bio</a> ·
+      <a href="{{ "publication/" | relURL }}">Publications</a> ·
+      <a href="{{ "teaching/" | relURL }}">Teaching</a> ·
+      <a href="{{ "software/" | relURL }}">Software</a> ·
+      <a href="{{ "research-group/" | relURL }}">People</a><br>
+      <a href="{{ .Site.Params.profile.cv_pdf | relURL }}">CV (PDF)</a> ·
+      <a href="{{ printf "mailto:%s" .Site.Params.profile.email }}">{{ .Site.Params.profile.email }}</a>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,51 @@
+{{- $page := . -}}
+{{- $pub := $page.Params.publication | default "" -}}
+{{- $types := $page.Params.publication_types | default slice -}}
+{{- if $pub -}}
+  {{- $lowerPub := lower $pub -}}
+  {{- $journals := slice
+    "American Journal of Political Science"
+    "American Political Science Review"
+    "American Sociological Review"
+    "Annual Review of Political Science"
+    "Big Data & Society"
+    "Civil Wars"
+    "Conflict Management & Peace Science"
+    "International Journal of Artificial Intelligence in Education"
+    "International Organization"
+    "International Studies Quarterly"
+    "Journal of Learning Analytics"
+    "Journal of Machine Learning Research"
+    "Journal of Statistical Software"
+    "Journal of the American Statistical Association"
+    "Nature"
+    "PLoS ONE"
+    "Political Analysis"
+    "Political Science Research and Methods"
+    "Proceedings of the National Academy of Sciences"
+    "Qualitative and Multi-Method Research"
+    "Science Advances"
+    "Small Wars & Insurgencies"
+    "Sociological Methodology"
+    "Sociological Methods & Research"
+    "The Journal of Politics"
+    "Transactions of the Association for Computational Linguistics"
+  -}}
+  {{- $venue := "" -}}
+  {{- range $journals -}}
+    {{- if and (not $venue) (hasPrefix $pub .) -}}{{- $venue = . -}}{{- end -}}
+  {{- end -}}
+  {{- if and (or (in $types "working_paper") (in $types "report")) (in $lowerPub "arxiv") -}}
+    <span class="pub-venue-name">arXiv</span>
+  {{- else if $venue -}}
+    {{- $details := replace $pub $venue "" -}}
+    <span class="pub-venue-name"><em>{{ $venue }}</em></span>{{ with $details }}<span class="pub-venue-details">{{ . }}</span>{{ end }}
+  {{- else if in $types "conference_paper" -}}
+    {{- $parts := split $pub "," -}}
+    {{- $venue := index $parts 0 -}}
+    {{- $details := replace $pub $venue "" -}}
+    <span class="pub-venue-name">{{ $venue }}</span>{{ with $details }}<span class="pub-venue-details">{{ . }}</span>{{ end }}
+  {{- else -}}
+    <span class="pub-venue-details">{{ $pub }}</span>
+  {{- end -}}
+{{- end -}}

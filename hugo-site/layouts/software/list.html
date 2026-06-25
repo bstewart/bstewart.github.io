@@ -1,0 +1,70 @@
+{{ define "main" }}
+{{ $highlighted := where .Pages "Params.status" "!=" "archive" }}
+{{ $archive := where .Pages "Params.status" "archive" }}
+<div class="container page-shell">
+  <div class="page-title-block">
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+  </div>
+
+  <section class="software-section" aria-labelledby="highlighted-software">
+    <div class="section-heading">
+      <h2 id="highlighted-software">Highlighted Software</h2>
+    </div>
+    <div class="software-list">
+      {{ range sort $highlighted "Weight" }}
+        {{ $titleURL := .RelPermalink }}
+        {{ with .Params.primary_url }}
+          {{ $titleURL = . }}
+        {{ else }}
+          {{ with .Params.links }}{{ with index . 0 }}{{ $titleURL = .url }}{{ end }}{{ end }}
+        {{ end }}
+        {{ $creditLabel := .Params.credit_label | default "Authors" }}
+        <article class="software-row">
+          <div>
+            <p class="type-label">{{ .Params.software_kind | default "Software" }}</p>
+            <h3><a href="{{ $titleURL }}">{{ .Title }}</a></h3>
+            {{ with .Params.authors }}<p class="software-authors">{{ $creditLabel }}: {{ delimit . ", " " and " }}</p>{{ end }}
+            <div class="prose">{{ .Summary }}</div>
+          </div>
+          {{ with .Params.links }}
+            <div class="link-buttons software-links">
+              {{ range . }}<a class="text-btn" href="{{ .url }}">{{ .name }}</a>{{ end }}
+            </div>
+          {{ end }}
+        </article>
+      {{ end }}
+    </div>
+  </section>
+
+  <section class="software-section" aria-labelledby="earlier-software">
+    <div class="section-heading">
+      <h2 id="earlier-software">Earlier Software</h2>
+    </div>
+    <div class="software-list">
+      {{ range sort $archive "Weight" }}
+        {{ $titleURL := .RelPermalink }}
+        {{ with .Params.primary_url }}
+          {{ $titleURL = . }}
+        {{ else }}
+          {{ with .Params.links }}{{ with index . 0 }}{{ $titleURL = .url }}{{ end }}{{ end }}
+        {{ end }}
+        {{ $creditLabel := .Params.credit_label | default "Authors" }}
+        <article class="software-row">
+          <div>
+            <p class="type-label">{{ .Params.software_kind | default "Archive" }}</p>
+            <h3><a href="{{ $titleURL }}">{{ .Title }}</a></h3>
+            {{ with .Params.authors }}<p class="software-authors">{{ $creditLabel }}: {{ delimit . ", " " and " }}</p>{{ end }}
+            <div class="prose">{{ .Summary }}</div>
+          </div>
+          {{ with .Params.links }}
+            <div class="link-buttons software-links">
+              {{ range . }}<a class="text-btn" href="{{ .url }}">{{ .name }}</a>{{ end }}
+            </div>
+          {{ end }}
+        </article>
+      {{ end }}
+    </div>
+  </section>
+</div>
+{{ end }}

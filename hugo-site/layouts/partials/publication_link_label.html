@@ -1,0 +1,11 @@
+{{- $name := .name | default "" -}}
+{{- $url := .url | default "" -}}
+{{- $lowerName := lower $name -}}
+{{- $lowerURL := lower $url -}}
+{{- if or (in $lowerName "arxiv") (in $lowerURL "arxiv.org") (in $lowerURL "/preprints/") -}}
+Preprint
+{{- else if or (in $lowerName "website") (in $lowerName "site") (in $lowerName "page") (hasPrefix $name "http") -}}
+Website
+{{- else -}}
+{{- $name -}}
+{{- end -}}

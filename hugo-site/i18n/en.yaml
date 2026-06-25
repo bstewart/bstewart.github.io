@@ -1,0 +1,14 @@
+article_pdf:
+  other: "Article (PDF)"
+publisher_version:
+  other: "Publisher's Version"
+external_link:
+  other: "External Link"
+dataset:
+  other: "Dataset"
+software:
+  other: "Software"
+reset:
+  other: "Reset"
+download_citations:
+  other: "Download citations"

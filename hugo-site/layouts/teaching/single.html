@@ -1,0 +1,10 @@
+{{ define "main" }}
+<div class="container page-shell">
+  <article class="course-detail">
+    <p class="eyebrow">Teaching</p>
+    <h1>{{ .Title }}</h1>
+    {{ if or .Params.course_code .Params.term }}<p class="course-meta">{{ with .Params.course_code }}{{ . }}{{ end }}{{ with .Params.term }}{{ if $.Params.course_code }} · {{ end }}{{ . }}{{ end }}</p>{{ end }}
+    <div class="prose">{{ .Content }}</div>
+  </article>
+</div>
+{{ end }}

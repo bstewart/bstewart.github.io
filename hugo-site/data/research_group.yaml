@@ -1,0 +1,261 @@
+current:
+  - name: Julia Byeon
+    role: Ph.D. student, Sociology
+    relation: Chair, Dissertation Committee
+    website: https://sociology.princeton.edu/people/julia-byeon
+  - name: Zachary Bamberger
+    role: Data and Decision Sciences, Technion
+    relation: Member, Dissertation Committee
+    website: https://scholar.google.com/citations?user=ekC3ZC0AAAAJ&hl=en
+  - name: Lemeng Liang
+    role: Ph.D. student, Sociology
+    relation: Member, Dissertation Committee
+    website: https://sociology.princeton.edu/people/lemeng-liang
+  - name: Solome Haile
+    role: Ph.D. student, Sociology
+    relation: Member, Dissertation Committee
+    website: https://sociology.princeton.edu/people/solome-haile
+  - name: Emily Cantrell
+    role: Ph.D. student, Sociology
+    relation: Member, Dissertation Committee
+    website: https://www.linkedin.com/in/emily-cantrell
+  - name: Marie-Lou Laprise
+    role: Ph.D. student, Sociology
+    relation: Member, Dissertation Committee
+    website: https://m-laprise.github.io/
+  - name: Sayash Kapoor
+    role: Ph.D. student, Computer Science
+    relation: Member, Dissertation Committee
+    website: https://www.cs.princeton.edu/~sayashk/
+  - name: Alessandra Rister Portinari Maranca
+    role: Ph.D. student, Sociology
+    relation: ""
+    website: https://alessandraristerportinarimaranca.com/
+
+alumni:
+  - name: Denis Peskoff
+    category: Postdoctoral Researchers
+    role: Computing Research Association Computing Innovation Fellow, 2022-2024
+    placement: Bellwether Postdoctoral Scholar, UC Berkeley School of Information
+    previously:
+      - Postdoctoral Fellow, Northwestern University
+    website: https://denis.ai/
+  - name: Musashi Hinck
+    category: Postdoctoral Researchers
+    role: DDSS Postdoctoral Research Fellow, 2022-2024
+    placement: Point72
+    previously:
+      - AI Research Scientist, Intel Labs
+    website: https://scholar.google.com/citations?user=e6QJmzQAAAAJ&hl=en
+  - name: Michael Zhang
+    category: Postdoctoral Researchers
+    role: Postdoctoral advisee, 2018-2020
+    placement: Assistant Professor, School of Computing and Data Science, The University of Hong Kong
+    website: https://michaelzhang01.github.io/
+  - name: Allison Chaney
+    categories:
+      - Postdoctoral Researchers
+      - Member, Dissertation Committee
+    role: "IC Postdoctoral Research Fellow, 2016-2019; dissertation committee member, Computer Science, graduated 2016"
+    graduation_year: 2016
+    placement: Adjunct Professor of Business Administration, Duke Fuqua School of Business
+    previously:
+      - Postdoctoral Research Fellow, Princeton University
+      - Assistant Professor of Business Administration, Duke Fuqua School of Business
+    website: https://ajbc.xyz/
+  - name: Till Saenger
+    category: Chair, Dissertation Committee
+    role: ORFE, graduated 2026; co-chair with Ronnie Sircar
+    graduation_year: 2026
+    placement: Balyasny Asset Management
+    website: https://tillrs.github.io/
+  - name: Chris Felton
+    category: Chair, Dissertation Committee
+    role: Sociology/Demography/Social Policy, graduated 2023
+    graduation_year: 2023
+    placement: Postdoctoral Fellow, Baylor University's Institute for Studies of Religion, and affiliate of the Human Flourishing Program at Harvard University
+    previously:
+      - Postdoctoral Scholar, Harvard University School of Education
+    website: https://scholar.google.com/citations?user=yLutHYUAAAAJ&hl=en&oi=ao
+  - name: Alex Kindel
+    category: Chair, Dissertation Committee
+    role: Sociology, graduated 2023
+    graduation_year: 2023
+    placement: Assistant Professor, Sciences Po
+    website: https://atkindel.github.io/
+  - name: Hannah Waight
+    category: Chair, Dissertation Committee
+    role: Sociology, graduated 2022
+    graduation_year: 2022
+    placement: Assistant Professor of Sociology, University of Oregon
+    previously:
+      - Postdoctoral Fellow, NYU Center for Social Media and Politics
+    website: https://hwaight.github.io/
+  - name: Ian Lundberg
+    category: Chair, Dissertation Committee
+    role: Sociology/Demography/Social Policy, graduated 2021
+    graduation_year: 2021
+    placement: Assistant Professor of Sociology, UCLA
+    previously:
+      - NSF Postdoctoral Fellow, UCLA
+      - Assistant Professor, Department of Information Science, Cornell University
+    website: https://ianlundberg.org/
+  - name: Adam Visokay
+    category: Member, Dissertation Committee
+    role: University of Washington Sociology, graduated 2026
+    graduation_year: 2026
+    placement: Bellwether Postdoctoral Fellow, UC Berkeley School of Information
+    website: https://avisokay.github.io/
+  - name: Katie Donnelly Moran
+    category: Member, Dissertation Committee
+    role: Sociology, graduated 2026
+    graduation_year: 2026
+    placement: PGRA Fellowship, Princeton University
+    website: ""
+  - name: Ha-Joon Chung
+    category: Member, Dissertation Committee
+    role: Sociology, graduated 2026
+    graduation_year: 2026
+    placement: PGRA Fellowship, Princeton University
+    website: ""
+  - name: Dahyun Choi
+    category: Member, Dissertation Committee
+    role: Politics, graduated 2026
+    graduation_year: 2026
+    placement: Postdoctoral Fellow, Northwestern Kellogg School of Management
+    website: https://dahyunc.github.io/
+  - name: Alejandro Schugurensky
+    category: Member, Dissertation Committee
+    role: Sociology, graduated 2025
+    graduation_year: 2025
+    placement: Senior Analyst, Rutgers Office of Institutional Research and Decision Support
+    previously:
+      - Postdoctoral Fellow, Princeton University
+    website: https://aschugurensky.scholar.princeton.edu/
+  - name: Gavin Cook
+    category: Member, Dissertation Committee
+    role: Sociology, graduated 2024
+    graduation_year: 2024
+    placement: Postdoctoral Fellow, Harvard University
+    website: ""
+  - name: Lai Wei
+    category: Member, Dissertation Committee
+    role: Sociology, graduated 2024
+    graduation_year: 2024
+    placement: Assistant Professor of Sociology, The University of Hong Kong
+    website: https://laiwei.github.io/
+  - name: Herrissa Lamothe
+    category: Member, Dissertation Committee
+    role: Sociology, graduated 2023
+    graduation_year: 2023
+    placement: Postdoctoral Associate, Department of Brain and Cognitive Sciences, MIT
+    website: ""
+  - name: Hannah Postel
+    category: Member, Dissertation Committee
+    role: Office of Population Research, graduated 2022
+    graduation_year: 2022
+    placement: Assistant Professor, Sanford School of Public Policy, Duke University
+    previously:
+      - Postdoctoral Research Fellow, Stanford Economics
+    website: https://hannahpostel.com/
+  - name: Will Horne
+    category: Member, Dissertation Committee
+    role: Politics, graduated 2022
+    graduation_year: 2022
+    placement: Assistant Professor of Political Science, Clemson University
+    previously:
+      - Postdoctoral Research Fellow, Executive Approval Project, Georgia State University
+    website: https://will-horne.github.io/
+  - name: Gracie Himmelstein
+    category: Member, Dissertation Committee
+    role: Office of Population Research, graduated 2022
+    graduation_year: 2022
+    placement: Resident Physician, Department of Medicine, David Geffen School of Medicine at UCLA
+    website: ""
+  - name: Simone Zhang
+    category: Member, Dissertation Committee
+    role: Sociology, graduated 2021
+    graduation_year: 2021
+    placement: Assistant Professor of Sociology, New York University
+    previously:
+      - Assistant Professor of Sociology, Notre Dame
+    website: https://simonezhang.com/
+  - name: Gregory Gundersen
+    category: Member, Dissertation Committee
+    role: Computer Science, graduated 2021
+    graduation_year: 2021
+    placement: Quantitative Researcher, Millennium
+    website: https://gregorygundersen.com/
+  - name: Leslie Huang
+    category: Member, Dissertation Committee
+    role: NYU Data Science, graduated 2021
+    graduation_year: 2021
+    placement: AI research engineer, Bloomberg LP
+    website: https://leslie-huang.github.io/
+  - name: Elsa Voytas
+    category: Member, Dissertation Committee
+    role: Politics, graduated 2021
+    graduation_year: 2021
+    placement: Assistant Professor of Quantitative Social Science, Dartmouth College
+    previously:
+      - Postdoctoral Fellow, Dartmouth College
+      - Assistant Professor, IE University, Madrid
+    website: https://elsavoytas.com/
+  - name: Arunesh Mathur
+    category: Member, Dissertation Committee
+    role: Computer Science, graduated 2020
+    graduation_year: 2020
+    placement: Data Science Center, Cornerstone Research, United Kingdom
+    previously:
+      - Postdoctoral Research Fellow, Princeton University
+      - Researcher, U.K. Competition and Markets Authority
+    website: https://aruneshmathur.co.in/
+  - name: Rebecca Johnson
+    category: Member, Dissertation Committee
+    role: Sociology/Demography/Social Policy, graduated 2020
+    graduation_year: 2020
+    placement: Assistant Professor, McCourt School of Public Policy, Georgetown University
+    previously:
+      - Assistant Professor of Quantitative Social Science, Dartmouth College
+    website: https://rebeccajohnson.org/
+  - name: Naoki Egami
+    category: Member, Dissertation Committee
+    role: Politics, graduated 2020
+    graduation_year: 2020
+    placement: Associate Professor of Political Science, MIT
+    previously:
+      - Assistant Professor of Political Science, Columbia University
+    website: https://naokiegami.com/
+  - name: Clark Bernier
+    category: Member, Dissertation Committee
+    role: Sociology, graduated 2020
+    graduation_year: 2020
+    placement: VP Data, Arkestro
+    previously:
+      - Postdoctoral Fellow, NYU Data Science
+      - Lead Data Scientist, Houzz
+    website: https://www.linkedin.com/in/clark-bernier
+  - name: Han Zhang
+    category: Member, Dissertation Committee
+    role: Sociology, graduated 2020
+    graduation_year: 2020
+    placement: Assistant Professor of Sociology and International and Public Affairs, Brown University
+    previously:
+      - Assistant Professor, Division of Social Science, The Hong Kong University of Science and Technology
+    website: https://sociology.brown.edu/people/han-zhang
+  - name: Kendall Cox Park
+    category: Member, Dissertation Committee
+    role: Sociology, graduated 2018
+    graduation_year: 2018
+    placement: Assistant Professor of Organization Studies, Vanderbilt Business
+    previously:
+      - Postdoctoral Fellow, Vanderbilt Business
+    website: https://www.linkedin.com/in/kendall-park-phd
+  - name: Yuki Shiraito
+    category: Member, Dissertation Committee
+    role: Politics, graduated 2017
+    graduation_year: 2017
+    placement: Assistant Professor of Political Science, University of Michigan
+    previously:
+      - Postdoctoral Fellow, Dartmouth College
+    website: https://shiraito.github.io/

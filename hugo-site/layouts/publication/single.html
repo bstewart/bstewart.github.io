@@ -1,0 +1,22 @@
+{{ define "main" }}
+<div class="container page-shell">
+  <article class="publication-detail">
+    <p class="eyebrow"><a href="{{ "/publication/" | relURL }}">Publications</a></p>
+    <h1>{{ .Title }}</h1>
+    <p class="pub-meta">{{ delimit (.Params.authors | default slice) ", " }} · {{ .Date.Format "2006" }}</p>
+    {{ with .Params.publication }}<p class="pub-venue">{{ partial "publication_line.html" $ }}</p>{{ end }}
+    {{ with .Params.tags }}
+      <div class="pub-tags" aria-label="Research tags">
+        {{ range . }}{{ if ne . "software" }}<a class="pub-tag" href="{{ printf "/publication/#tag=%s" (. | urlquery) | relURL }}">{{ . }}</a>{{ end }}{{ end }}
+      </div>
+    {{ end }}
+    {{ with .Params.links }}<div class="link-buttons publication-actions">{{ range $i, $link := . }}<a class="btn{{ if gt $i 0 }} secondary{{ end }}" href="{{ $link.url | relURL }}">{{ partial "publication_link_label.html" $link }}</a>{{ end }}</div>{{ end }}
+    {{ with .Resources.GetMatch "featured.*" }}
+      <figure class="publication-featured"><a href="{{ .RelPermalink }}" aria-label="Open featured image full size"><img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" loading="lazy" alt="{{ $.Params.image_alt | default "" }}"></a></figure>
+    {{ end }}
+    {{ with .Params.abstract }}<section class="publication-abstract"><h2>Abstract</h2><p>{{ . }}</p></section>{{ end }}
+    <div class="prose">{{ .Content }}</div>
+    {{ partial "related_finder.html" . }}
+  </article>
+</div>
+{{ end }}

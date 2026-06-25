@@ -1,0 +1,16 @@
+{{ define "main" }}
+<div class="container page-shell">
+  <div class="page-title-block">
+    <p class="eyebrow">{{ .Section | humanize }}</p>
+    <h1>{{ .Title }}</h1>
+  </div>
+  <article class="prose">
+    {{ .Content }}
+    {{ with .Params.links }}
+      <div class="link-buttons">
+        {{ range . }}<a class="btn secondary" href="{{ .url | relURL }}">{{ .name }}</a>{{ end }}
+      </div>
+    {{ end }}
+  </article>
+</div>
+{{ end }}

@@ -1,0 +1,50 @@
+{{- $page := . -}}
+{{- $pub := $page.Params.publication | default "" -}}
+{{- $types := $page.Params.publication_types | default slice -}}
+{{- if $pub -}}
+  {{- $lowerPub := lower $pub -}}
+  {{- $journals := slice
+    "American Journal of Political Science"
+    "American Political Science Review"
+    "American Sociological Review"
+    "Annual Review of Political Science"
+    "Big Data & Society"
+    "Civil Wars"
+    "Conflict Management & Peace Science"
+    "International Journal of Artificial Intelligence in Education"
+    "International Organization"
+    "International Studies Quarterly"
+    "Journal of Learning Analytics"
+    "Journal of Machine Learning Research"
+    "Journal of Statistical Software"
+    "Journal of the American Statistical Association"
+    "Nature"
+    "PLoS ONE"
+    "Political Analysis"
+    "Political Science Research and Methods"
+    "Proceedings of the National Academy of Sciences"
+    "Qualitative and Multi-Method Research"
+    "Science Advances"
+    "Small Wars & Insurgencies"
+    "Sociological Methodology"
+    "Sociological Methods & Research"
+    "The Journal of Politics"
+    "Transactions of the Association for Computational Linguistics"
+  -}}
+  {{- $venue := "" -}}
+  {{- range $journals -}}
+    {{- if and (not $venue) (in $pub .) -}}{{- $venue = . -}}{{- end -}}
+  {{- end -}}
+  {{- if and (or (in $types "working_paper") (in $types "report")) (in $lowerPub "arxiv") -}}
+    <span class="pub-venue-name">arXiv</span>
+  {{- else if eq $venue "Proceedings of the National Academy of Sciences" -}}
+    <span class="pub-venue-name"><em>PNAS</em></span>
+  {{- else if $venue -}}
+    <span class="pub-venue-name"><em>{{ $venue }}</em></span>
+  {{- else if in $types "conference_paper" -}}
+    {{- $parts := split $pub "," -}}
+    <span class="pub-venue-name">{{ index $parts 0 }}</span>
+  {{- else -}}
+    <span class="pub-venue-details">{{ $pub }}</span>
+  {{- end -}}
+{{- end -}}

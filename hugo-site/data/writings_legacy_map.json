@@ -1,0 +1,220 @@
+{
+  "entries": {
+    "reforms-consensus-based-recommendations-machine-learning-based-science": {
+      "tab": "reports",
+      "drupal": "Working Papers"
+    },
+    "multilanguage-word-embeddings-social-scientists-estimation-inference-and-validation": {
+      "tab": "reports",
+      "drupal": "Working Papers"
+    },
+    "short-term-exposure-filter-bubble-recommendation-systems-has-limited-polarization": {
+      "tab": "reports",
+      "drupal": "Working Papers"
+    },
+    "handle-care-sociologist’s-guide-causal-inference-instrumental-variables": {
+      "tab": "reports",
+      "drupal": "Working Papers"
+    },
+    "what-good-regression-inference-best-explanation-and-practice-political-science-0": {
+      "tab": "reports",
+      "drupal": "Working Papers"
+    },
+    "gpt-deciphering-fedspeak-quantifying-dissent-among-hawks-and-doves": {
+      "tab": "articles",
+      "drupal": "2023"
+    },
+    "using-imperfect-surrogates-downstream-inference-design-based-supervised-learning": {
+      "tab": "articles",
+      "drupal": "2023"
+    },
+    "credible-without-credit-domain-experts-assess-generative-language-models": {
+      "tab": "reports",
+      "drupal": "2023"
+    },
+    "embedding-regression-models-context-specific-description-and-inference": {
+      "tab": "articles",
+      "drupal": "2023"
+    },
+    "manipulative-tactics-are-norm-political-emails-evidence-100k-emails-2020-us": {
+      "tab": "articles",
+      "drupal": "2023"
+    },
+    "naïve-regression-requires-weaker-assumptions-factor-models-adjust-multiple": {
+      "tab": "articles",
+      "drupal": "2023"
+    },
+    "causal-inference-natural-language-processing-estimation-prediction": {
+      "tab": "articles",
+      "drupal": "2022"
+    },
+    "text-data-new-framework-machine-learning-and-social-sciences": {
+      "tab": "books",
+      "drupal": "2022"
+    },
+    "tools-topic-model-validation-towards-procedures-validating-topics-measures": {
+      "tab": "articles",
+      "drupal": "2022"
+    },
+    "how-make-causal-inferences-using-texts": {
+      "tab": "articles",
+      "drupal": "2022"
+    },
+    "machine-learning-social-science-agnostic-approach": {
+      "tab": "articles",
+      "drupal": "2021"
+    },
+    "setting-target-precise-estimands-and-gap-between-theory-and-empirics": {
+      "tab": "articles",
+      "drupal": "2021"
+    },
+    "measuring-predictability-life-outcomes-scientific-mass-collaboration": {
+      "tab": "articles",
+      "drupal": "2020"
+    },
+    "comment-summarizing-income-mobility-multiple-smooth-quantiles-instead": {
+      "tab": "articles",
+      "drupal": "2020"
+    },
+    "computational-and-machine-learning-models-necessity-connecting-theory-and": {
+      "tab": "chapters",
+      "drupal": "2020"
+    },
+    "matching-methods-high-dimensional-data-applications-text": {
+      "tab": "articles",
+      "drupal": "2020"
+    },
+    "what-makes-foreign-policy-teams-tick-explaining-variation-group-performance": {
+      "tab": "articles",
+      "drupal": "2019"
+    },
+    "stm-r-package-structural-topic-models": {
+      "tab": "software",
+      "drupal": "2019"
+    },
+    "la-carte-embedding-cheap-effective-induction-semantic-feature-vectors": {
+      "tab": "articles",
+      "drupal": "2018"
+    },
+    "civic-mission-moocs-computational-measures-engagement-across-differences": {
+      "tab": "articles",
+      "drupal": "2018"
+    },
+    "how-algorithmic-confounding-recommendation-systems-increases-homogeneity-and": {
+      "tab": "articles",
+      "drupal": "2018"
+    },
+    "global-diffusion-law-transnational-crime-and-case-human-trafficking": {
+      "tab": "articles",
+      "drupal": "2018"
+    },
+    "discourse-mooc-discussion-forum-analysis-scale": {
+      "tab": "articles",
+      "drupal": "2017"
+    },
+    "civic-mission-moocs-measuring-engagementacross-political-differences-forums": {
+      "tab": "articles",
+      "drupal": "2016"
+    },
+    "model-text-experimentation-social-sciences": {
+      "tab": "articles",
+      "drupal": "2016"
+    },
+    "navigating-local-modes-big-data-case-topic-models": {
+      "tab": "chapters",
+      "drupal": "2016"
+    },
+    "topiccheck-interactive-alignment-assessing-topic-model-stability": {
+      "tab": "articles",
+      "drupal": "2015"
+    },
+    "plain-text-transparency-acquisition-analysis-and-access-stages-computer": {
+      "tab": "articles",
+      "drupal": "2015"
+    },
+    "computer-assisted-reading-and-discovery-student-generated-text-massive-open": {
+      "tab": "articles",
+      "drupal": "2015"
+    },
+    "computer-assisted-text-analysis-comparative-politics": {
+      "tab": "articles",
+      "drupal": "2015"
+    },
+    "computer-assisted-content-analysis-topic-models-exploring-multiple-subjective": {
+      "tab": "articles",
+      "drupal": "2014"
+    },
+    "lbfgs-efficient-l-bfgs-and-owl-qn-optimization-r": {
+      "tab": "software",
+      "drupal": "2014"
+    },
+    "latent-factor-regressions-social-sciences": {
+      "tab": "articles",
+      "drupal": "2014"
+    },
+    "structural-topic-models-open-ended-survey-responses": {
+      "tab": "articles",
+      "drupal": "2014"
+    },
+    "structural-topic-model-and-applied-social-science": {
+      "tab": "articles",
+      "drupal": "2013"
+    },
+    "psychological-and-physiological-responses-following-repeated-peer-death": {
+      "tab": "articles",
+      "drupal": "2013"
+    },
+    "learning-extract-international-relations-political-context": {
+      "tab": "articles",
+      "drupal": "2013"
+    },
+    "text-data-promise-and-pitfalls-automatic-content-analysis-methods-political": {
+      "tab": "articles",
+      "drupal": "2013"
+    },
+    "choosing-your-neighbors-networks-diffusion-international-relations": {
+      "tab": "articles",
+      "drupal": "2013"
+    },
+    "combating-transnational-crime-role-learning-and-norm-diffusion-current-rule": {
+      "tab": "chapters",
+      "drupal": "2012"
+    },
+    "use-force-and-civil–military-relations-russia-automated-content-analysis": {
+      "tab": "articles",
+      "drupal": "2009"
+    },
+    "political-persecution-or-economic-deprivation-time-series-analysis-haitian": {
+      "tab": "articles",
+      "drupal": "2007"
+    },
+    "predicting-risk-factors-associated-forced-migration-early-warning-model": {
+      "tab": "articles",
+      "drupal": "2007"
+    },
+    "fair-balanced-or-fit-print-effects-media-sources-statistical-inferences": {
+      "tab": "articles",
+      "drupal": "2006"
+    },
+    "more-victories-less-cooperation-assessing-cicero-s-diplomacy-play": {
+      "tab": "reports",
+      "drupal": "Current sitemap metadata pending"
+    },
+    "autopersuade-framework-evaluating-and-explaining-persuasive-arguments": {
+      "tab": "reports",
+      "drupal": "Current sitemap metadata pending"
+    },
+    "decade-long-growth-government-authored-news-media-china-under-xi-jinping": {
+      "tab": "reports",
+      "drupal": "Current sitemap metadata pending"
+    },
+    "correcting-measurement-errors-ai-assisted-labeling-image-analysis-using-design-based": {
+      "tab": "reports",
+      "drupal": "Current sitemap metadata pending"
+    },
+    "measuring-distances-high-dimensional-spaces-why-average-group-vector-comparisons": {
+      "tab": "reports",
+      "drupal": "Current sitemap metadata pending"
+    }
+  }
+}

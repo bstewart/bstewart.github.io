@@ -1,0 +1,14 @@
+{{- $page := . -}}
+{{- $img := $page.Resources.GetMatch "featured.*" -}}
+<a class="featured-pub-card" href="{{ $page.RelPermalink }}">
+  {{- with $img }}
+  <span class="featured-pub-thumb">
+    <img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}"
+         loading="lazy" alt="{{ $page.Params.image_alt | default "" }}">
+  </span>
+  {{- end }}
+  <span class="featured-pub-body">
+    <span class="featured-pub-meta">{{ partial "publication_venue_only.html" $page }}<span class="pub-venue-details">, {{ $page.Date.Format "2006" }}</span></span>
+    <span class="featured-pub-title">{{ $page.Title }}</span>
+  </span>
+</a>

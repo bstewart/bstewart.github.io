@@ -1,0 +1,35 @@
+{{ define "main" }}
+{{ $profile := .Site.Params.profile }}
+<div class="container page-shell">
+  <article class="bio-layout">
+    <div class="bio-intro-block">
+      <p class="eyebrow">{{ $profile.institution }}</p>
+      <h1>{{ .Title }}</h1>
+    </div>
+    <aside class="bio-sidebar" aria-label="Bio quick facts">
+      <figure class="bio-photo-panel">
+        <img src="{{ $profile.bio_photo | relURL }}" width="1600" height="1065" alt="Portrait of Brandon M. Stewart">
+      </figure>
+      <div class="metadata-grid bio-metadata">
+        <div class="meta-box">
+          <span class="meta-label">Contact</span>
+          <span class="meta-value"><a href="{{ printf "mailto:%s" $profile.email }}">{{ $profile.email }}</a><br><a href="{{ $profile.google_scholar }}">Google Scholar</a><br><a href="{{ $profile.cv_pdf | relURL }}">CV (PDF)</a></span>
+        </div>
+        <div class="meta-box">
+          <span class="meta-label">Education</span>
+          <span class="meta-value">Ph.D. Government, Harvard University, 2015<br>M.A. Statistics, Harvard University, 2014</span>
+        </div>
+        <div class="meta-box">
+          <span class="meta-label">Editorial</span>
+          <span class="meta-value">Co-Editor-in-Chief, <em>Political Analysis</em><br>Associate Editor, <em>Sociological Methods &amp; Research</em></span>
+        </div>
+        <div class="meta-box">
+          <span class="meta-label">Selected Awards</span>
+          <span class="meta-value">ASA Leo Goodman Early Career Award, 2024<br>PolMeth Emerging Scholar Award, 2023</span>
+        </div>
+      </div>
+    </aside>
+    <div class="bio-content prose">{{ .Content }}</div>
+  </article>
+</div>
+{{ end }}

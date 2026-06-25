@@ -1,0 +1,9 @@
+hugo-site/.hugo_cache/
+hugo-site/.hugo_build.lock
+hugo-site/public/
+hugo-site/resources/_gen/
+hugo-site/node_modules/
+.DS_Store
+.claude/
+.tmp/
+Feedback/

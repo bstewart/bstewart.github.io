@@ -1,0 +1,35 @@
+{{ $current := . }}
+{{ $items := slice }}
+{{ $currentSlug := .Params.slug | default .File.ContentBaseName }}
+{{ $strongTies := hugo.Data.related_publications.strong_ties | default slice }}
+{{ $currentTags := slice }}
+{{ range (.Params.tags | default slice) }}{{ if ne . "software" }}{{ $currentTags = $currentTags | append . }}{{ end }}{{ end }}
+{{ $currentAuthors := .Params.authors | default slice }}
+{{ range where site.RegularPages "Section" "publication" }}
+  {{ if ne .RelPermalink $current.RelPermalink }}
+    {{ $candidateSlug := .Params.slug | default .File.ContentBaseName }}
+    {{ $manualTie := false }}
+    {{ range $strongTies }}
+      {{ if or (and (eq .from $currentSlug) (eq .to $candidateSlug)) (and (eq .to $currentSlug) (eq .from $candidateSlug)) }}
+        {{ $manualTie = true }}
+      {{ end }}
+    {{ end }}
+    {{ $score := 0 }}
+    {{ range (.Params.tags | default slice) }}{{ if and (ne . "software") (in $currentTags .) }}{{ $score = add $score 2 }}{{ end }}{{ end }}
+    {{ range (.Params.authors | default slice) }}{{ if in $currentAuthors . }}{{ $score = add $score 1 }}{{ end }}{{ end }}
+    {{ if $manualTie }}{{ $score = add $score 1000 }}{{ end }}
+    {{ if or $manualTie (ge $score 2) }}{{ $items = $items | append (dict "page" . "score" $score) }}{{ end }}
+  {{ end }}
+{{ end }}
+{{ with .Params.dataverse_url }}
+<section class="see-also"><h2>Related Data</h2><ul><li><span class="type-label">[Dataset]</span> <a href="{{ . }}">Harvard Dataverse</a></li></ul></section>
+{{ end }}
+{{ if gt (len $items) 0 }}
+<section class="see-also"><h2>Related Publications</h2><ul>
+  {{ range first 8 (sort $items "score" "desc") }}{{ $p := .page }}
+    {{ $types := $p.Params.publication_types | default slice }}
+    {{ $label := "Paper" }}{{ if in $types "working_paper" }}{{ $label = "Working Paper" }}{{ else if in $types "conference_paper" }}{{ $label = "Conference Proceedings" }}{{ else if in $types "book" }}{{ $label = "Book" }}{{ else if in $types "report" }}{{ $label = "Other" }}{{ else if in $types "data" }}{{ $label = "Dataset" }}{{ end }}
+    <li><span class="type-label">[{{ $label }}]</span> <a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a></li>
+  {{ end }}
+</ul></section>
+{{ end }}

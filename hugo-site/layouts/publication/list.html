@@ -1,0 +1,316 @@
+{{ define "main" }}
+{{ $pubs := where .Site.RegularPages "Section" "publication" }}
+{{ $workingPapers := where $pubs "Params.publication_types" "intersect" (slice "working_paper") }}
+{{ $articles := where $pubs "Params.publication_types" "intersect" (slice "journal_article") }}
+{{ $conferencePapers := where $pubs "Params.publication_types" "intersect" (slice "conference_paper") }}
+{{ $books := where $pubs "Params.publication_types" "intersect" (slice "book") }}
+{{ $reports := where $pubs "Params.publication_types" "intersect" (slice "report") }}
+{{ $chapters := where $pubs "Params.publication_types" "intersect" (slice "book_chapter") }}
+{{ $allTags := slice }}
+{{ range $pubs }}{{ range (.Params.tags | default slice) }}{{ if ne . "software" }}{{ $allTags = $allTags | append . }}{{ end }}{{ end }}{{ end }}
+{{ $allTags = sort (uniq $allTags) }}
+<div class="container page-shell">
+  <div class="page-title-block">
+    <h1>Publications</h1>
+  </div>
+  <div class="tabs-wrap" aria-label="Publication type filters">
+    <div class="tabs" role="group" aria-label="Publication type">
+      <button class="tab-btn active" data-tab="all" type="button" aria-pressed="true">All <span>{{ len $pubs }}</span></button>
+      <button class="tab-btn" data-tab="working" type="button" aria-pressed="false">Working Papers <span>{{ len $workingPapers }}</span></button>
+      <button class="tab-btn" data-tab="articles" type="button" aria-pressed="false">Articles <span>{{ len $articles }}</span></button>
+      <button class="tab-btn" data-tab="conference" type="button" aria-pressed="false">Conference Proceedings <span>{{ len $conferencePapers }}</span></button>
+      <button class="tab-btn" data-tab="books" type="button" aria-pressed="false">Books <span>{{ len $books }}</span></button>
+      <button class="tab-btn" data-tab="other" type="button" aria-pressed="false">Other <span>{{ len $reports }}</span></button>
+      <button class="tab-btn" data-tab="chapters" type="button" aria-pressed="false">Chapters <span>{{ len $chapters }}</span></button>
+    </div>
+  </div>
+  <button class="text-btn filter-toggle" type="button" data-filter-toggle aria-expanded="false" aria-controls="publication-filters">Filter results</button>
+  <div class="writings-layout">
+    <aside class="filters" id="publication-filters" aria-label="Publication filters">
+      <div class="filter-group"><label for="pub-search">Search</label><input id="pub-search" type="search" data-filter-search></div>
+      <fieldset class="filter-group"><legend>Tags</legend><div class="check-list" data-tag-filters>{{ range $allTags }}<label><input type="checkbox" value="{{ . }}"> {{ . }}</label>{{ end }}</div></fieldset>
+      <fieldset class="filter-group"><legend>Type</legend><div class="check-list" data-type-filters><label><input type="checkbox" value="working_paper"> Working paper</label><label><input type="checkbox" value="journal_article"> Article</label><label><input type="checkbox" value="conference_paper"> Conference proceedings</label><label><input type="checkbox" value="book"> Book</label><label><input type="checkbox" value="report"> Other</label><label><input type="checkbox" value="book_chapter"> Chapter</label></div></fieldset>
+      {{ $years := slice }}{{ range $pubs }}{{ $years = $years | append (.Date.Format "2006") }}{{ end }}
+      <fieldset class="filter-group"><legend>Year</legend><div class="check-list" data-year-filters>{{ range sort (uniq $years) "value" "desc" }}<label><input type="checkbox" value="{{ . }}"> {{ . }}</label>{{ end }}</div></fieldset>
+      <button class="text-btn" type="button" data-reset>Reset</button>
+    </aside>
+    <section>
+      {{ if gt (len $workingPapers) 0 }}
+        <section class="working-paper-block" data-working-papers aria-label="Working papers">
+          <h2>Working Papers</h2>
+          <div class="working-paper-list">
+            {{ range sort $workingPapers "Date" "desc" }}
+              {{ $page := . }}
+              {{ $citation := .Params.bibtex | default .Params.citation | default .Params.publication }}
+              <article class="working-paper-card">
+                <div class="pub-badges" aria-label="Publication metadata">
+                  <button class="pub-badge" type="button" data-year="{{ .Date.Format "2006" }}" aria-pressed="false">{{ .Date.Format "2006" }}</button>
+                  <button class="pub-badge" type="button" data-type="working_paper" aria-pressed="false">Working Paper</button>
+                </div>
+                <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+                <p class="pub-authors">{{ delimit (.Params.authors | default slice) ", " }}</p>
+                {{ with .Params.publication }}<p class="pub-venue">{{ partial "publication_line.html" $page }}</p>{{ end }}
+                {{ with .Params.tags }}
+                  <div class="pub-tags" aria-label="Research tags">
+                    {{ range . }}{{ if ne . "software" }}<button class="pub-tag" type="button" data-tag="{{ . }}" aria-pressed="false">{{ . }}</button>{{ end }}{{ end }}
+                  </div>
+                {{ end }}
+                <div class="pub-actions working-paper-actions">
+                  <a class="text-btn pub-action-link learn-more-link" href="{{ .RelPermalink }}">Details</a>
+                  <div class="pub-secondary-actions">
+                    {{ with .Params.links }}{{ range . }}<a class="text-btn pub-action-link" href="{{ .url | relURL }}">{{ partial "publication_link_label.html" . }}</a>{{ end }}{{ end }}
+                    {{ with $citation }}<button class="text-btn pub-toggle" type="button" data-panel-toggle="citation" aria-expanded="false">Citation</button>{{ end }}
+                  </div>
+                </div>
+                {{ with $citation }}
+                  <div class="pub-panel" data-panel="citation" hidden>
+                    <div class="pub-panel-head">
+                      <h3>Citation</h3>
+                      <button class="text-btn copy-citation" type="button">Copy</button>
+                    </div>
+                    <pre class="pub-citation-text">{{ . }}</pre>
+                  </div>
+                {{ end }}
+              </article>
+            {{ end }}
+          </div>
+        </section>
+      {{ end }}
+      <div class="controls-row">
+        <span data-result-count>{{ len $pubs }} of {{ len $pubs }} results</span>
+        <div>
+          <label for="sort-pubs" class="sr-only">Sort</label>
+          <select id="sort-pubs" data-sort>
+            <option value="newest">Newest first</option>
+            <option value="oldest">Oldest first</option>
+            <option value="az">Title A-Z</option>
+            <option value="za">Title Z-A</option>
+          </select>
+          <button class="text-btn" type="button" data-download-bib>Download citations</button>
+        </div>
+      </div>
+      <div class="pub-list" data-publication-list>
+        {{ range sort $pubs "Date" "desc" }}
+          {{ $page := . }}
+          {{ $types := .Params.publication_types | default (slice "journal_article") }}
+          {{ $tab := "articles" }}{{ if in $types "working_paper" }}{{ $tab = "working" }}{{ else if in $types "conference_paper" }}{{ $tab = "conference" }}{{ else if in $types "book" }}{{ $tab = "books" }}{{ else if or (in $types "book_chapter") (in $types "chapter") }}{{ $tab = "chapters" }}{{ else if in $types "report" }}{{ $tab = "other" }}{{ end }}
+          {{ $typeLabel := "Article" }}{{ if eq $tab "working" }}{{ $typeLabel = "Working Paper" }}{{ else if eq $tab "conference" }}{{ $typeLabel = "Conference Proceedings" }}{{ else if eq $tab "books" }}{{ $typeLabel = "Book" }}{{ else if eq $tab "chapters" }}{{ $typeLabel = "Chapter" }}{{ else if eq $tab "other" }}{{ $typeLabel = "Other" }}{{ end }}
+          {{ $typeValue := "journal_article" }}{{ if eq $tab "working" }}{{ $typeValue = "working_paper" }}{{ else if eq $tab "conference" }}{{ $typeValue = "conference_paper" }}{{ else if eq $tab "books" }}{{ $typeValue = "book" }}{{ else if eq $tab "chapters" }}{{ $typeValue = "book_chapter" }}{{ else if eq $tab "other" }}{{ $typeValue = "report" }}{{ end }}
+          {{ $citation := .Params.bibtex | default .Params.citation | default .Params.publication }}
+          <article class="pub-row" data-tab="{{ $tab }}" data-types="{{ delimit $types "," }}" data-year="{{ .Date.Format "2006" }}" data-title="{{ .Title | plainify }}" data-authors="{{ delimit (.Params.authors | default slice) ", " | plainify }}" data-venue="{{ .Params.publication | plainify }}" data-abstract="{{ .Params.abstract | plainify }}" data-tags="{{ delimit (.Params.tags | default slice) "|" }}" data-bibtex="{{ $citation | plainify }}">
+            <div class="pub-card-head">
+              <div class="pub-badges" aria-label="Publication metadata">
+                <button class="pub-badge" type="button" data-year="{{ .Date.Format "2006" }}" aria-pressed="false">{{ .Date.Format "2006" }}</button>
+                <button class="pub-badge" type="button" data-type="{{ $typeValue }}" aria-pressed="false">{{ $typeLabel }}</button>
+              </div>
+              <h2 class="pub-card-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+              <p class="pub-authors">{{ delimit (.Params.authors | default slice) ", " }}</p>
+              {{ with .Params.publication }}<p class="pub-venue">{{ partial "publication_line.html" $page }}</p>{{ end }}
+              {{ with .Params.tags }}
+                <div class="pub-tags" aria-label="Research tags">
+                  {{ range . }}{{ if ne . "software" }}<button class="pub-tag" type="button" data-tag="{{ . }}" aria-pressed="false">{{ . }}</button>{{ end }}{{ end }}
+                </div>
+              {{ end }}
+            </div>
+            <div class="pub-actions">
+              <a class="text-btn pub-action-link learn-more-link" href="{{ .RelPermalink }}">Details</a>
+              <div class="pub-secondary-actions">
+                {{ with .Params.abstract }}<button class="text-btn pub-toggle" type="button" data-panel-toggle="abstract" aria-expanded="false">Abstract</button>{{ end }}
+                {{ with $citation }}<button class="text-btn pub-toggle" type="button" data-panel-toggle="citation" aria-expanded="false">Citation</button>{{ end }}
+                {{ with .Params.links }}{{ range . }}<a class="text-btn pub-action-link" href="{{ .url | relURL }}">{{ partial "publication_link_label.html" . }}</a>{{ end }}{{ end }}
+              </div>
+            </div>
+            {{ with .Params.abstract }}
+              <div class="pub-panel" data-panel="abstract" hidden>
+                <h3>Abstract</h3>
+                <p>{{ . }}</p>
+              </div>
+            {{ end }}
+            {{ with $citation }}
+              <div class="pub-panel" data-panel="citation" hidden>
+                <div class="pub-panel-head">
+                  <h3>Citation</h3>
+                  <button class="text-btn copy-citation" type="button">Copy</button>
+                </div>
+                <pre class="pub-citation-text">{{ . }}</pre>
+              </div>
+            {{ end }}
+          </article>
+        {{ end }}
+      </div>
+    </section>
+  </div>
+</div>
+<script>
+(function(){
+  var rows = Array.from(document.querySelectorAll('.pub-row'));
+  var tabs = Array.from(document.querySelectorAll('.tab-btn'));
+  var search = document.querySelector('[data-filter-search]');
+  var tagChecks = Array.from(document.querySelectorAll('[data-tag-filters] input'));
+  var typeChecks = Array.from(document.querySelectorAll('[data-type-filters] input'));
+  var yearChecks = Array.from(document.querySelectorAll('[data-year-filters] input'));
+  var sort = document.querySelector('[data-sort]');
+  var count = document.querySelector('[data-result-count]');
+  var list = document.querySelector('[data-publication-list]');
+  var workingBlock = document.querySelector('[data-working-papers]');
+  var filterToggle = document.querySelector('[data-filter-toggle]');
+  var filters = document.getElementById('publication-filters');
+  var state = { tab: 'all' };
+  function parseHash(){
+    var h = location.hash.replace(/^#/, '');
+    if (!h) return;
+    if (h.indexOf('=') === -1) { state.tab = h; return; }
+    var params = new URLSearchParams(h);
+    state.tab = params.get('tab') || 'all';
+    search.value = params.get('q') || '';
+    var hashTags = params.getAll('tag');
+    var legacyTags = params.get('tags');
+    if (!hashTags.length && legacyTags) hashTags = legacyTags.split(',').filter(Boolean);
+    tagChecks.forEach(function(i){ i.checked = hashTags.indexOf(i.value) >= 0; });
+    var hashTypes = params.getAll('type');
+    var legacyTypes = params.get('types');
+    if (!hashTypes.length && legacyTypes) hashTypes = legacyTypes.split(',').filter(Boolean);
+    typeChecks.forEach(function(i){ i.checked = hashTypes.indexOf(i.value) >= 0; });
+    var hashYears = params.getAll('year');
+    var legacyYears = params.get('years');
+    if (!hashYears.length && legacyYears) hashYears = legacyYears.split(',').filter(Boolean);
+    yearChecks.forEach(function(i){ i.checked = hashYears.indexOf(i.value) >= 0; });
+  }
+  function writeHash(){
+    var params = new URLSearchParams();
+    if (state.tab && state.tab !== 'all') params.set('tab', state.tab);
+    if (search.value.trim()) params.set('q', search.value.trim());
+    selected(tagChecks).forEach(function(t){ params.append('tag', t); });
+    selected(typeChecks).forEach(function(t){ params.append('type', t); });
+    selected(yearChecks).forEach(function(y){ params.append('year', y); });
+    var next = params.toString() ? '#' + params.toString() : '#all';
+    if (location.hash !== next) history.replaceState(null, '', next);
+  }
+  function selected(inputs){ return inputs.filter(function(i){ return i.checked; }).map(function(i){ return i.value; }); }
+  function rowText(row){ return [row.dataset.title,row.dataset.authors,row.dataset.venue,row.dataset.abstract,row.dataset.tags].join(' ').toLowerCase(); }
+  function apply(){
+    var q = search.value.trim().toLowerCase();
+    var types = selected(typeChecks); var years = selected(yearChecks); var tagValues = selected(tagChecks);
+    var workingBlockVisible = false;
+    if (workingBlock) {
+      var filtered = q || types.length || years.length || tagValues.length;
+      workingBlockVisible = !filtered && (state.tab === 'all' || state.tab === 'working');
+      workingBlock.hidden = !workingBlockVisible;
+    }
+    var visible = [];
+    rows.forEach(function(row){
+      var ok = true;
+      if (state.tab !== 'all' && row.dataset.tab !== state.tab) ok = false;
+      if (q && rowText(row).indexOf(q) === -1) ok = false;
+      if (types.length && !types.some(function(t){ return row.dataset.types.split(',').indexOf(t) >= 0; })) ok = false;
+      if (years.length && years.indexOf(row.dataset.year) === -1) ok = false;
+      if (tagValues.length && !tagValues.every(function(t){ return row.dataset.tags.split('|').indexOf(t) >= 0; })) ok = false;
+      if (workingBlockVisible && row.dataset.tab === 'working') ok = false;
+      row.classList.toggle('hidden', !ok);
+      if (ok) visible.push(row);
+    });
+    visible.sort(function(a,b){
+      if (sort.value === 'oldest') return Number(a.dataset.year) - Number(b.dataset.year) || a.dataset.title.localeCompare(b.dataset.title);
+      if (sort.value === 'az') return a.dataset.title.localeCompare(b.dataset.title);
+      if (sort.value === 'za') return b.dataset.title.localeCompare(a.dataset.title);
+      return Number(b.dataset.year) - Number(a.dataset.year) || a.dataset.title.localeCompare(b.dataset.title);
+    }).forEach(function(row){ list.appendChild(row); });
+    tabs.forEach(function(btn){
+      var active = btn.dataset.tab === state.tab;
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-pressed', String(active));
+    });
+    document.querySelectorAll('.pub-tag[data-tag]').forEach(function(btn){
+      var active = tagValues.indexOf(btn.dataset.tag) >= 0;
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-pressed', String(active));
+    });
+    document.querySelectorAll('.pub-badge[data-type]').forEach(function(btn){
+      var active = types.indexOf(btn.dataset.type) >= 0;
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-pressed', String(active));
+    });
+    document.querySelectorAll('.pub-badge[data-year]').forEach(function(btn){
+      var active = years.indexOf(btn.dataset.year) >= 0;
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-pressed', String(active));
+    });
+    var featuredCount = workingBlockVisible && workingBlock ? workingBlock.querySelectorAll('.working-paper-card').length : 0;
+    count.textContent = (visible.length + featuredCount) + ' of ' + rows.length + ' results';
+    writeHash();
+  }
+  tabs.forEach(function(btn){ btn.addEventListener('click', function(){ state.tab = btn.dataset.tab; apply(); }); });
+  if (filterToggle && filters) {
+    filterToggle.addEventListener('click', function(){
+      var open = filters.classList.toggle('open');
+      filterToggle.setAttribute('aria-expanded', String(open));
+      filterToggle.textContent = open ? 'Hide filters' : 'Filter results';
+    });
+  }
+  [search, sort].forEach(function(el){ el.addEventListener('input', apply); el.addEventListener('change', apply); });
+  tagChecks.concat(typeChecks).concat(yearChecks).forEach(function(el){ el.addEventListener('change', apply); });
+  document.querySelectorAll('.pub-tag[data-tag]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      state.tab = 'all';
+      tagChecks.forEach(function(i){
+        if (i.value === btn.dataset.tag) i.checked = !i.checked;
+      });
+      apply();
+    });
+  });
+  document.querySelectorAll('.pub-badge[data-type]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      state.tab = 'all';
+      typeChecks.forEach(function(i){
+        if (i.value === btn.dataset.type) i.checked = !i.checked;
+      });
+      apply();
+    });
+  });
+  document.querySelectorAll('.pub-badge[data-year]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      state.tab = 'all';
+      yearChecks.forEach(function(i){
+        if (i.value === btn.dataset.year) i.checked = !i.checked;
+      });
+      apply();
+    });
+  });
+  document.querySelector('[data-reset]').addEventListener('click', function(){ state.tab='all'; search.value=''; tagChecks.concat(typeChecks).concat(yearChecks).forEach(function(i){ i.checked=false; }); sort.value='newest'; apply(); });
+  document.querySelector('[data-download-bib]').addEventListener('click', function(){
+    var visible = rows.filter(function(r){ return !r.classList.contains('hidden') || (workingBlock && !workingBlock.hidden && r.dataset.tab === 'working'); });
+    var bib = visible.map(function(r, idx){
+      if (r.dataset.bibtex) return r.dataset.bibtex;
+      return '@misc{stewart' + r.dataset.year + '_' + idx + ',\n  title = {' + r.dataset.title + '},\n  author = {' + r.dataset.authors + '},\n  year = {' + r.dataset.year + '},\n  note = {' + r.dataset.venue.replace(/[{}]/g,'') + '}\n}';
+    }).join('\n\n');
+    var blob = new Blob([bib], {type:'text/plain'}); var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'brandon-stewart-citations.bib'; a.click(); URL.revokeObjectURL(a.href);
+  });
+  document.querySelectorAll('[data-panel-toggle]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var row = btn.closest('.pub-row, .working-paper-card');
+      var panel = row.querySelector('[data-panel="' + btn.dataset.panelToggle + '"]');
+      if (!panel) return;
+      var open = panel.hidden;
+      row.querySelectorAll('.pub-panel').forEach(function(p){ p.hidden = true; });
+      row.querySelectorAll('[data-panel-toggle]').forEach(function(b){ b.setAttribute('aria-expanded', 'false'); b.classList.remove('active'); });
+      panel.hidden = !open;
+      btn.setAttribute('aria-expanded', String(open));
+      btn.classList.toggle('active', open);
+    });
+  });
+  document.querySelectorAll('.copy-citation').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var text = btn.closest('.pub-panel').querySelector('.pub-citation-text').textContent.trim();
+      if (!navigator.clipboard) return;
+      navigator.clipboard.writeText(text).then(function(){
+        var old = btn.textContent;
+        btn.textContent = 'Copied';
+        setTimeout(function(){ btn.textContent = old; }, 1400);
+      });
+    });
+  });
+  window.addEventListener('hashchange', function(){ parseHash(); if (!tabs.some(function(t){ return t.dataset.tab === state.tab; })) state.tab = 'all'; apply(); });
+  parseHash(); if (!tabs.some(function(t){ return t.dataset.tab === state.tab; })) state.tab = 'all'; apply();
+})();
+</script>
+{{ end }}

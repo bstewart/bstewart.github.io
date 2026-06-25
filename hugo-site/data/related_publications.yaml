@@ -1,0 +1,60 @@
+strong_ties:
+  # 02-12: STATe-of-Thoughts <-> AutoPersuade
+  - from: state-of-thoughts-structured-action-templates-tree-of-thoughts
+    to: autopersuade-framework-evaluating-and-explaining-persuasive-arguments
+
+  # 01-09: State media and LLMs <-> China government-authored news
+  - from: state-media-control-influences-large-language-models
+    to: decade-long-growth-government-authored-news-media-china-under-xi-jinping
+
+  # 03-25: IV guide <-> estimands
+  - from: handle-care-sociologist’s-guide-causal-inference-instrumental-variables
+    to: setting-target-precise-estimands-and-gap-between-theory-and-empirics
+
+  # 05-15: LLM annotations <-> imperfect surrogates
+  - from: using-large-language-model-annotations-social-sciences
+    to: using-imperfect-surrogates-downstream-inference-design-based-supervised-learning
+
+  # 06-25: regression/IBE <-> estimands
+  - from: what-good-regression-inference-best-explanation-and-practice-political-science-0
+    to: setting-target-precise-estimands-and-gap-between-theory-and-empirics
+
+  # 05-07: LLM annotations <-> AI-assisted labeling measurement error
+  - from: using-large-language-model-annotations-social-sciences
+    to: correcting-measurement-errors-ai-assisted-labeling-image-analysis-using-design-based
+
+  # 07-15: AI-assisted labeling measurement error <-> imperfect surrogates
+  - from: correcting-measurement-errors-ai-assisted-labeling-image-analysis-using-design-based
+    to: using-imperfect-surrogates-downstream-inference-design-based-supervised-learning
+
+  # 08-20: multilanguage embeddings <-> embedding regression
+  - from: multilanguage-word-embeddings-social-scientists-estimation-inference-and-validation
+    to: embedding-regression-models-context-specific-description-and-inference
+
+  # 08-11: multilanguage embeddings <-> high-dimensional distance bias
+  - from: multilanguage-word-embeddings-social-scientists-estimation-inference-and-validation
+    to: measuring-distances-high-dimensional-spaces-why-average-group-vector-comparisons
+
+  # 11-20: high-dimensional distance bias <-> embedding regression
+  - from: measuring-distances-high-dimensional-spaces-why-average-group-vector-comparisons
+    to: embedding-regression-models-context-specific-description-and-inference
+
+  # 04-16: fine-tuned LLM coding <-> GPT Fedspeak
+  - from: fine-tuned-large-language-models-replicate-expert-coding-trained-coders
+    to: gpt-deciphering-fedspeak-quantifying-dissent-among-hawks-and-doves
+
+  # 21-24: causal inference with texts <-> causal inference in NLP
+  - from: how-make-causal-inferences-using-texts
+    to: causal-inference-natural-language-processing-estimation-prediction
+
+  # 20-36: embedding regression <-> a la carte embeddings
+  - from: embedding-regression-models-context-specific-description-and-inference
+    to: la-carte-embedding-cheap-effective-induction-semantic-feature-vectors
+
+  # 25-29: estimands <-> income mobility comment
+  - from: setting-target-precise-estimands-and-gap-between-theory-and-empirics
+    to: comment-summarizing-income-mobility-multiple-smooth-quantiles-instead
+
+  # 26-23: machine learning for social science <-> Text as Data book
+  - from: machine-learning-social-science-agnostic-approach
+    to: text-data-new-framework-machine-learning-and-social-sciences

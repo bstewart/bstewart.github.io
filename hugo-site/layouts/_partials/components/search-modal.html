@@ -1,0 +1,65 @@
+<div class="search-modal" data-search-modal hidden>
+  <div class="search-panel" role="dialog" aria-modal="true" aria-label="Search site">
+    <div class="search-head">
+      <label class="sr-only" for="site-search-input">Search this site</label>
+      <input id="site-search-input" type="search" data-search-input placeholder="Search this site" autocomplete="off">
+      <button class="icon-btn" type="button" data-close-search aria-label="Close search">
+        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+      </button>
+    </div>
+    <div class="search-results" data-search-results>Start typing to search the site.</div>
+  </div>
+</div>
+<script>
+(function(){
+  var modal = document.querySelector('[data-search-modal]');
+  var input = document.querySelector('[data-search-input]');
+  var results = document.querySelector('[data-search-results]');
+  var lastFocus = null;
+  var pagefind = null;
+  async function loadPagefind(){
+    if (pagefind) return pagefind;
+    try { pagefind = await import('{{ "pagefind/pagefind.js" | relURL }}'); return pagefind; }
+    catch (e) { return null; }
+  }
+  function focusable(){
+    return Array.from(modal.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])')).filter(function(el){
+      return !el.hasAttribute('hidden') && el.offsetParent !== null;
+    });
+  }
+  function open(){ lastFocus = document.activeElement; modal.hidden = false; setTimeout(function(){ input.focus(); }, 20); }
+  function close(){ modal.hidden = true; input.value = ''; results.textContent = 'Start typing to search the site.'; if (lastFocus && lastFocus.focus) lastFocus.focus(); }
+  document.querySelectorAll('[data-open-search]').forEach(function(btn){ btn.addEventListener('click', open); });
+  document.querySelectorAll('[data-close-search]').forEach(function(btn){ btn.addEventListener('click', close); });
+  modal.addEventListener('click', function(e){ if (e.target === modal) close(); });
+  document.addEventListener('keydown', function(e){
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); open(); }
+    if (modal.hidden) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'Tab') {
+      var items = focusable();
+      if (!items.length) { e.preventDefault(); return; }
+      var first = items[0];
+      var last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+  var timer;
+  input.addEventListener('input', function(){
+    clearTimeout(timer);
+    timer = setTimeout(async function(){
+      var q = input.value.trim();
+      if (!q) { results.textContent = 'Start typing to search the site.'; return; }
+      var pf = await loadPagefind();
+      if (!pf || !pf.search) {
+        results.innerHTML = '<a href="https://www.google.com/search?q=site%3Abstewart.github.io+' + encodeURIComponent(q) + '">Search this site with Google</a>';
+        return;
+      }
+      var search = await pf.search(q);
+      var rows = await Promise.all(search.results.slice(0, 8).map(function(r){ return r.data(); }));
+      results.innerHTML = rows.length ? rows.map(function(r){ return '<a href="' + r.url + '">' + r.meta.title + '</a><p>' + (r.excerpt || '') + '</p>'; }).join('') : 'No results.';
+    }, 160);
+  });
+})();
+</script>

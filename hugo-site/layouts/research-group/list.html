@@ -1,0 +1,122 @@
+{{ define "main" }}
+{{ $current := hugo.Data.research_group.current }}
+{{ $alumni := hugo.Data.research_group.alumni }}
+<div class="container page-shell">
+  <div class="page-title-block">
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+  </div>
+
+  <section class="people-section" aria-labelledby="current-research-group">
+    <div class="section-heading">
+      <h2 id="current-research-group">Current Research Group <span class="section-count">{{ len $current }}</span></h2>
+    </div>
+    <div class="people-grid">
+      {{ range $current }}
+        <article class="person-card">
+          <h3>
+            {{ if .website }}<a href="{{ .website }}">{{ .name }}</a>{{ else }}{{ .name }}{{ end }}
+          </h3>
+          <p>{{ .role }}</p>
+          {{ with .relation }}<p class="pub-meta">{{ . }}</p>{{ end }}
+        </article>
+      {{ end }}
+    </div>
+  </section>
+
+  <section class="people-section" aria-labelledby="alumni">
+    <div class="section-heading">
+      <h2 id="alumni">Alumni <span class="section-count">{{ len $alumni }}</span></h2>
+    </div>
+    <div class="people-tools" aria-label="Alumni filters">
+      <label>
+        <span>Category</span>
+        <select data-people-category>
+          <option value="">All</option>
+          {{ $categories := slice }}
+          {{ range $alumni }}
+            {{ with .categories }}
+              {{ range . }}{{ $categories = $categories | append . }}{{ end }}
+            {{ else }}
+              {{ $categories = $categories | append .category }}
+            {{ end }}
+          {{ end }}
+          {{ range sort (uniq $categories) }}
+            <option value="{{ . }}">{{ . }}</option>
+          {{ end }}
+        </select>
+      </label>
+      <label>
+        <span>Search</span>
+        <input type="search" data-people-search placeholder="Name, placement, field">
+      </label>
+      <div class="people-sort" role="group" aria-label="Sort alumni">
+        <button class="text-btn active" type="button" data-people-sort="az">Last Name A-Z</button>
+        <button class="text-btn" type="button" data-people-sort="za">Last Name Z-A</button>
+        <button class="text-btn" type="button" data-people-sort="year-desc">Year Newest</button>
+        <button class="text-btn" type="button" data-people-sort="year-asc">Year Oldest</button>
+      </div>
+    </div>
+    <div class="alumni-list" data-alumni-list>
+      {{ range $alumni }}
+        {{ $last := index (last 1 (split .name " ")) 0 }}
+        {{ $personCategories := slice }}
+        {{ with .categories }}{{ range . }}{{ $personCategories = $personCategories | append . }}{{ end }}{{ else }}{{ $personCategories = $personCategories | append .category }}{{ end }}
+        {{ $categoryText := delimit $personCategories "; " }}
+        {{ $meta := slice $categoryText }}
+        {{ with .graduation_year }}{{ $meta = $meta | append (printf "Graduated %v" .) }}{{ end }}
+        {{ $previously := delimit (.previously | default slice) " " }}
+        <article class="alumni-row" data-categories="{{ delimit $personCategories "|" }}" data-last="{{ lower $last }}" data-year="{{ .graduation_year | default "" }}" data-text="{{ printf "%s %s %s %s %s %v" .name $categoryText .role (.placement | default "") $previously (.graduation_year | default "") | lower }}">
+          <div>
+            <h3>{{ if .website }}<a href="{{ .website }}">{{ .name }}</a>{{ else }}{{ .name }}{{ end }}</h3>
+            <p class="pub-meta">{{ delimit $meta " · " }}</p>
+          </div>
+          <div>
+            <p class="alumni-current">{{ .placement }}</p>
+            {{ with .previously }}<p class="pub-meta">Previously: {{ delimit . " → " }}</p>{{ end }}
+            <p class="pub-meta alumni-training">{{ .role }}</p>
+          </div>
+        </article>
+      {{ end }}
+    </div>
+  </section>
+</div>
+<script>
+(function(){
+  var rows = Array.from(document.querySelectorAll('.alumni-row'));
+  var list = document.querySelector('[data-alumni-list]');
+  var category = document.querySelector('[data-people-category]');
+  var search = document.querySelector('[data-people-search]');
+  var sortButtons = Array.from(document.querySelectorAll('[data-people-sort]'));
+  var sortMode = 'az';
+  function apply(){
+    var cat = category.value;
+    var q = search.value.trim().toLowerCase();
+    var visible = [];
+    rows.forEach(function(row){
+      var ok = true;
+      if (cat && row.dataset.categories.split('|').indexOf(cat) === -1) ok = false;
+      if (q && row.dataset.text.indexOf(q) === -1) ok = false;
+      row.classList.toggle('hidden', !ok);
+      if (ok) visible.push(row);
+    });
+    visible.sort(function(a,b){
+      if (sortMode === 'year-desc' || sortMode === 'year-asc') {
+        var ay = Number(a.dataset.year || 0);
+        var by = Number(b.dataset.year || 0);
+        if (ay && !by) return -1;
+        if (!ay && by) return 1;
+        if (ay !== by) return sortMode === 'year-desc' ? by - ay : ay - by;
+      }
+      var cmp = a.dataset.last.localeCompare(b.dataset.last) || a.textContent.localeCompare(b.textContent);
+      return sortMode === 'za' ? -cmp : cmp;
+    }).forEach(function(row){ list.appendChild(row); });
+    sortButtons.forEach(function(btn){ btn.classList.toggle('active', btn.dataset.peopleSort === sortMode); });
+  }
+  category.addEventListener('change', apply);
+  search.addEventListener('input', apply);
+  sortButtons.forEach(function(btn){ btn.addEventListener('click', function(){ sortMode = btn.dataset.peopleSort; apply(); }); });
+  apply();
+})();
+</script>
+{{ end }}

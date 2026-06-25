@@ -1,0 +1,29 @@
+<header class="site-header">
+  <nav class="navbar" aria-label="Main navigation">
+    <a class="brand" href="{{ "" | relURL }}">{{ .Site.Params.profile.name }}</a>
+    <div class="nav-right">
+      <ul class="nav-menu" id="nav-menu">
+        {{ range .Site.Menus.main }}
+          <li><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>
+        {{ end }}
+      </ul>
+      <button class="icon-btn" type="button" aria-label="Search" title="Search" data-open-search>
+        <svg width="21" height="21" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+      </button>
+      <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu" data-nav-toggle>
+        <svg width="23" height="23" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      </button>
+    </div>
+  </nav>
+</header>
+<script>
+(function(){
+  var toggle = document.querySelector('[data-nav-toggle]');
+  var menu = document.getElementById('nav-menu');
+  if (!toggle || !menu) return;
+  toggle.addEventListener('click', function(){
+    var open = menu.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+})();
+</script>

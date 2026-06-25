@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "build": "HUGO_CACHEDIR=\"$PWD/.hugo_cache\" hugo --gc --minify --cleanDestinationDir && pagefind --site public",
+    "preview": "HUGO_CACHEDIR=\"$PWD/.hugo_cache\" hugo server --disableFastRender --bind 127.0.0.1"
+  },
+  "devDependencies": {
+    "pagefind": "1.5.0"
+  }
+}

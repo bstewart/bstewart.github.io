@@ -1,0 +1,61 @@
+{{ define "main" }}
+{{ $pages := where .Pages "Params.exclude_from_list" "!=" true }}
+{{ $current := where $pages "Params.teaching_status" "current" }}
+{{ $previous := where $pages "Params.teaching_status" "!=" "current" }}
+<div class="container page-shell">
+  <div class="page-title-block">
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+    <div class="teaching-header-actions">
+      <a class="btn secondary" href="{{ "teaching/recommendation/" | relURL }}">Asking for a Letter of Recommendation</a>
+    </div>
+  </div>
+
+  <section class="teaching-section" aria-labelledby="current-teaching">
+    <div class="section-heading">
+      <h2 id="current-teaching">Current Courses</h2>
+    </div>
+    <div class="teaching-card-list">
+      {{ range $current.ByWeight }}
+        {{ $page := . }}
+        {{ $href := .RelPermalink }}
+        {{ $actionLabel := .Params.action_label | default "Course materials" }}
+        {{ with .Params.external_url }}{{ $href = . }}{{ $actionLabel = $page.Params.external_label | default "Website" }}{{ end }}
+        <article class="teaching-card">
+          <div>
+            {{ $courseCode := .Params.course_code }}
+            <p class="course-meta">{{ with $courseCode }}{{ . }}{{ end }}{{ with .Params.term }}{{ if $courseCode }} · {{ end }}{{ . }}{{ end }}</p>
+            <h3 class="teaching-card-title"><a href="{{ $href }}">{{ .Title }}</a></h3>
+            <p>{{ .Params.summary | default .Summary }}</p>
+          </div>
+          <a class="text-btn pub-action-link" href="{{ $href }}">{{ $actionLabel }}</a>
+        </article>
+      {{ end }}
+    </div>
+  </section>
+
+  <section class="teaching-section" aria-labelledby="previous-teaching">
+    <div class="section-heading">
+      <h2 id="previous-teaching">Previous Courses</h2>
+    </div>
+    <div class="teaching-card-list">
+      {{ range $previous.ByWeight }}
+        {{ $page := . }}
+        {{ $href := .RelPermalink }}
+        {{ $actionLabel := .Params.action_label | default "Course materials" }}
+        {{ if in (lower .Title) "reading group" }}{{ $actionLabel = "Course Materials" }}{{ end }}
+        {{ with .Params.external_url }}{{ $href = . }}{{ $actionLabel = $page.Params.external_label | default "Website" }}{{ end }}
+        <article class="teaching-card">
+          <div>
+            {{ $courseCode := .Params.course_code }}
+            <p class="course-meta">{{ with $courseCode }}{{ . }}{{ end }}{{ with .Params.term }}{{ if $courseCode }} · {{ end }}{{ . }}{{ end }}</p>
+            <h3 class="teaching-card-title"><a href="{{ $href }}">{{ .Title }}</a></h3>
+            <p>{{ .Params.summary | default .Summary }}</p>
+          </div>
+          <a class="text-btn pub-action-link" href="{{ $href }}">{{ $actionLabel }}</a>
+        </article>
+      {{ end }}
+    </div>
+  </section>
+</div>
+{{ end }}
