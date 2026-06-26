@@ -36,6 +36,17 @@
     {{- with .Params.publication -}}{{- $schema = merge $schema (dict "isPartOf" .) -}}{{- end -}}
   {{- end -}}
   <script type="application/ld+json">{{ $schema | jsonify | safeJS }}</script>
+  {{- if and (eq hugo.Environment "production") .Site.Params.marketing.analytics.google_analytics }}
+  {{- $ga := .Site.Params.marketing.analytics.google_analytics -}}
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ $ga }}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '{{ $ga }}');
+  </script>
+  {{- end }}
   {{ with resources.Get "css/custom.css" }}{{ $css := . | minify | fingerprint }}<link rel="stylesheet" href="{{ $css.RelPermalink }}">{{ end }}
 </head>
 <body>

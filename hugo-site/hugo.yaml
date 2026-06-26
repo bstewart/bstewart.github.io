@@ -12,6 +12,9 @@ outputs:
 
 params:
   description: "Brandon M. Stewart is Professor of Sociology at Princeton University."
+  marketing:
+    analytics:
+      google_analytics: "G-QE0FRY03VB"
   profile:
     name: "Brandon M. Stewart"
     title: "Professor of Sociology"
