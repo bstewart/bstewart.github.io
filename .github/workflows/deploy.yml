@@ -49,7 +49,7 @@ jobs:
         env:
           HUGO_ENVIRONMENT: production
           TZ: America/New_York
-        run: hugo --gc --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
+        run: hugo --gc --minify --baseURL "https://brandonstewart.org/"
 
       - name: Build Pagefind search index
         run: npx pagefind --site public

@@ -53,7 +53,7 @@
       if (!q) { results.textContent = 'Start typing to search the site.'; return; }
       var pf = await loadPagefind();
       if (!pf || !pf.search) {
-        results.innerHTML = '<a href="https://www.google.com/search?q=site%3Abstewart.github.io+' + encodeURIComponent(q) + '">Search this site with Google</a>';
+        results.innerHTML = '<a href="https://www.google.com/search?q=site%3Abrandonstewart.org+' + encodeURIComponent(q) + '">Search this site with Google</a>';
         return;
       }
       var search = await pf.search(q);
