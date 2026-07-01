@@ -10,7 +10,7 @@
         {{ range . }}{{ if ne . "software" }}<a class="pub-tag" href="{{ printf "/publication/#tag=%s" (. | urlquery) | relURL }}">{{ . }}</a>{{ end }}{{ end }}
       </div>
     {{ end }}
-    {{ with .Params.links }}<div class="link-buttons publication-actions">{{ range $i, $link := . }}<a class="btn{{ if gt $i 0 }} secondary{{ end }}" href="{{ $link.url | relURL }}">{{ partial "publication_link_label.html" $link }}</a>{{ end }}</div>{{ end }}
+    {{ with .Params.links }}<div class="link-buttons publication-actions">{{ range $i, $link := . }}{{ $external := or (hasPrefix $link.url "http://") (hasPrefix $link.url "https://") }}<a class="btn{{ if gt $i 0 }} secondary{{ end }}" href="{{ $link.url | relURL }}"{{ if $external }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ partial "publication_link_label.html" $link }}</a>{{ end }}</div>{{ end }}
     {{ with .Resources.GetMatch "featured.*" }}
       <figure class="publication-featured"><a href="{{ .RelPermalink }}" aria-label="Open featured image full size"><img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" loading="lazy" alt="{{ $.Params.image_alt | default "" }}"></a></figure>
     {{ end }}

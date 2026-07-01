@@ -58,7 +58,7 @@
                 <div class="pub-actions working-paper-actions">
                   <a class="text-btn pub-action-link learn-more-link" href="{{ .RelPermalink }}">Details</a>
                   <div class="pub-secondary-actions">
-                    {{ with .Params.links }}{{ range . }}<a class="text-btn pub-action-link" href="{{ .url | relURL }}">{{ partial "publication_link_label.html" . }}</a>{{ end }}{{ end }}
+                    {{ with .Params.links }}{{ range . }}{{ $external := or (hasPrefix .url "http://") (hasPrefix .url "https://") }}<a class="text-btn pub-action-link" href="{{ .url | relURL }}"{{ if $external }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ partial "publication_link_label.html" . }}</a>{{ end }}{{ end }}
                     {{ with $citation }}<button class="text-btn pub-toggle" type="button" data-panel-toggle="citation" aria-expanded="false">Citation</button>{{ end }}
                   </div>
                 </div>
@@ -117,7 +117,7 @@
               <div class="pub-secondary-actions">
                 {{ with .Params.abstract }}<button class="text-btn pub-toggle" type="button" data-panel-toggle="abstract" aria-expanded="false">Abstract</button>{{ end }}
                 {{ with $citation }}<button class="text-btn pub-toggle" type="button" data-panel-toggle="citation" aria-expanded="false">Citation</button>{{ end }}
-                {{ with .Params.links }}{{ range . }}<a class="text-btn pub-action-link" href="{{ .url | relURL }}">{{ partial "publication_link_label.html" . }}</a>{{ end }}{{ end }}
+                {{ with .Params.links }}{{ range . }}{{ $external := or (hasPrefix .url "http://") (hasPrefix .url "https://") }}<a class="text-btn pub-action-link" href="{{ .url | relURL }}"{{ if $external }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ partial "publication_link_label.html" . }}</a>{{ end }}{{ end }}
               </div>
             </div>
             {{ with .Params.abstract }}
