@@ -23,14 +23,6 @@ current:
     role: Ph.D. student, Sociology
     relation: Member, Dissertation Committee
     website: https://www.linkedin.com/in/emily-cantrell
-  - name: Marie-Lou Laprise
-    role: Ph.D. student, Sociology
-    relation: Member, Dissertation Committee
-    website: https://m-laprise.github.io/
-  - name: Sayash Kapoor
-    role: Ph.D. student, Computer Science
-    relation: Member, Dissertation Committee
-    website: https://www.cs.princeton.edu/~sayashk/
   - name: Alessandra Rister Portinari Maranca
     role: Ph.D. student, Sociology
     relation: ""
@@ -134,6 +126,18 @@ alumni:
     graduation_year: 2026
     placement: PGRA Fellowship, Princeton University
     website: ""
+  - name: Marie-Lou Laprise
+    category: Member, Dissertation Committee
+    role: Sociology, graduated 2026
+    graduation_year: 2026
+    placement: PGRA Fellowship, Princeton University
+    website: https://m-laprise.github.io/
+  - name: Sayash Kapoor
+    category: Member, Dissertation Committee
+    role: Computer Science, graduated 2026
+    graduation_year: 2026
+    placement: Assistant Professor, UC Berkeley School of Information
+    website: https://www.cs.princeton.edu/~sayashk/
   - name: Dahyun Choi
     category: Member, Dissertation Committee
     role: Politics, graduated 2026
