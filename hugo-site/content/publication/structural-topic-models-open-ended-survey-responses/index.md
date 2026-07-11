@@ -13,6 +13,10 @@ authors:
 publication_types:
 - journal_article
 publication: 'American Journal of Political Science 58(4): 1064-1082, 2014.'
+awards:
+- name: Gosnell Prize for Excellence in Political Methodology
+  short_name: Gosnell Prize
+  year: 2014
 abstract: Collection and especially analysis of open-ended survey responses are relatively rare in the discipline and when conducted are almost exclusively done through human coding. We present an alternative, semi-automated approach, the structural topic model (STM) (Roberts, Stewart, and Airoldi 2013; Roberts, Stewart, Tingley, Lucas, Leder-Luis, Gadarian, Albertson, and Rand 2013), that draws on recent developments in machine learning based analysis of textual data. A crucial contribution of the method is that it incorporates information about the document, such as the author’s gender, political affiliation, and treatment assignment (if an experimental study). This article focuses on how the STM is helpful for survey researchers and experimentalists. The STM makes analyzing open-ended responses easier, more revealing, and capable of being used to estimate treatment effects. We illustrate these innovations with analysis of text from surveys and experiments.
 citation: 'Margaret E. Roberts, Brandon M. Stewart, Dustin Tingley, Christopher Lucas, Jetson Leder-Luis, Shana Gadarian, Bethany Albertson, David Rand. Structural Topic Models for Open-Ended Survey Responses. American Journal of Political Science 58(4): 1064-1082, 2014.'
 doi: 10.1111/ajps.12103

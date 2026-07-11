@@ -5,6 +5,7 @@
     <h1>{{ .Title }}</h1>
     <p class="pub-meta">{{ delimit (.Params.authors | default slice) ", " }} · {{ .Date.Format "2006" }}</p>
     {{ with .Params.publication }}<p class="pub-venue">{{ partial "publication_line.html" $ }}</p>{{ end }}
+    {{ partial "publication_awards.html" . }}
     {{ with .Params.tags }}
       <div class="pub-tags" aria-label="Research tags">
         {{ range . }}{{ if ne . "software" }}<a class="pub-tag" href="{{ printf "/publication/#tag=%s" (. | urlquery) | relURL }}">{{ . }}</a>{{ end }}{{ end }}
@@ -16,6 +17,7 @@
     {{ end }}
     {{ with .Params.abstract }}<section class="publication-abstract"><h2>Abstract</h2><p>{{ . }}</p></section>{{ end }}
     <div class="prose">{{ .Content }}</div>
+    {{ partial "book_reviews.html" . }}
     {{ partial "related_finder.html" . }}
   </article>
 </div>

@@ -15,6 +15,30 @@
     </div>
   </div>
 </section>
+{{ with site.GetPage "/publication/text-data-new-framework-machine-learning-and-social-sciences" }}
+{{ $book := . }}
+<section class="section-band book-feature">
+  <div class="container book-feature-inner">
+    {{ with .Resources.GetMatch "featured.*" }}
+      <a class="book-feature-cover" href="{{ $book.RelPermalink }}" aria-label="Learn more about Text as Data">
+        <img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="Cover of Text as Data: A New Framework for Machine Learning and the Social Sciences">
+      </a>
+    {{ end }}
+    <div class="book-feature-content">
+      <p class="eyebrow">Book</p>
+      {{ partial "publication_awards.html" . }}
+      <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+      <p class="book-feature-authors">{{ delimit (.Params.authors | default slice) ", " }}</p>
+      <p class="book-feature-summary">A research-design framework for using text and machine learning across representation, discovery, measurement, prediction, and causal inference.</p>
+      {{ with .Params.reviews }}<p class="book-feature-reviews">Reviewed in <em>Sociological Methods &amp; Research</em>, <em>New Media &amp; Society</em>, <em>Technometrics</em>, and elsewhere. <a href="{{ $book.RelPermalink }}#reviews">See all {{ len . }} reviews.</a></p>{{ end }}
+      <div class="actions book-feature-actions">
+        <a class="btn" href="{{ .RelPermalink }}">About the Book</a>
+        {{ with index (.Params.links | default slice) 0 }}<a class="btn secondary" href="{{ .url }}" target="_blank" rel="noopener noreferrer">Princeton University Press</a>{{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
 <section class="section-band">
   <div class="container">
     <div class="page-title-block">

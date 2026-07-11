@@ -50,6 +50,7 @@
                 <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
                 <p class="pub-authors">{{ delimit (.Params.authors | default slice) ", " }}</p>
                 {{ with .Params.publication }}<p class="pub-venue">{{ partial "publication_line.html" $page }}</p>{{ end }}
+                {{ partial "publication_awards.html" . }}
                 {{ with .Params.tags }}
                   <div class="pub-tags" aria-label="Research tags">
                     {{ range . }}{{ if ne . "software" }}<button class="pub-tag" type="button" data-tag="{{ . }}" aria-pressed="false">{{ . }}</button>{{ end }}{{ end }}
@@ -106,6 +107,7 @@
               <h2 class="pub-card-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
               <p class="pub-authors">{{ delimit (.Params.authors | default slice) ", " }}</p>
               {{ with .Params.publication }}<p class="pub-venue">{{ partial "publication_line.html" $page }}</p>{{ end }}
+              {{ partial "publication_awards.html" . }}
               {{ with .Params.tags }}
                 <div class="pub-tags" aria-label="Research tags">
                   {{ range . }}{{ if ne . "software" }}<button class="pub-tag" type="button" data-tag="{{ . }}" aria-pressed="false">{{ . }}</button>{{ end }}{{ end }}

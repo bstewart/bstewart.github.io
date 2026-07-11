@@ -1,0 +1,10 @@
+{{- with .Params.awards -}}
+<div class="publication-awards" aria-label="Awards">
+  {{- range . }}
+  <div class="publication-award">
+    <span class="publication-award-label">Award</span>
+    <span>{{ with .year }}{{ . }} {{ end }}{{ .name }}</span>
+  </div>
+  {{- end }}
+</div>
+{{- end -}}

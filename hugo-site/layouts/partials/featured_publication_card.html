@@ -5,6 +5,9 @@
   <span class="featured-pub-thumb">
     <img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}"
          loading="lazy" alt="{{ $page.Params.image_alt | default "" }}">
+    {{- with $page.Params.awards }}{{ with index . 0 }}
+      <span class="featured-pub-award">{{ with .year }}{{ . }} {{ end }}{{ .short_name | default .name }}</span>
+    {{- end }}{{ end }}
   </span>
   {{- end }}
   <span class="featured-pub-body">
