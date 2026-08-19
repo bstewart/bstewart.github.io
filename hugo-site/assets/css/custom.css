@@ -287,6 +287,15 @@ details.area[open] summary::after { content: "-"; }
 .see-also li { padding: 7px 0; border-bottom: 1px solid var(--color-border); }
 .book-reviews { clear: both; max-width: 860px; margin-top: 34px; border-top: 1px solid var(--color-border); padding-top: 22px; }
 .book-reviews h2 { margin-bottom: 14px; }
+.publication-coverage { clear: both; max-width: 860px; margin-top: 34px; border-top: 1px solid var(--color-border); padding-top: 22px; }
+.publication-coverage h2 { margin-bottom: 14px; }
+.coverage-list {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 28px;
+  margin: 0; padding: 0; list-style: none;
+}
+.coverage-list li { border-top: 1px solid var(--color-border); padding: 11px 0; font-weight: 700; line-height: 1.35; }
+.coverage-list a { color: var(--color-text); text-decoration: none; }
+.coverage-list a:hover { color: var(--color-accent); text-decoration: underline; text-underline-offset: .18em; }
 .review-list {
   display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 28px;
   margin: 0; padding: 0; list-style: none;
@@ -494,7 +503,7 @@ details.area[open] summary::after { content: "-"; }
   .book-feature-actions { grid-column: 1 / -1; }
   .book-feature-content h2 { margin: 4px 0 0; font-size: 1.45rem; }
   .book-feature-authors, .book-feature-summary { font-size: .9rem; }
-  .review-list { grid-template-columns: 1fr; }
+  .review-list, .coverage-list { grid-template-columns: 1fr; }
 }
 @media (max-width: 360px) {
   .navbar { padding: 0 12px; gap: 8px; }

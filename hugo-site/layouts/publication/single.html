@@ -17,6 +17,7 @@
     {{ end }}
     {{ with .Params.abstract }}<section class="publication-abstract"><h2>Abstract</h2><p>{{ . }}</p></section>{{ end }}
     <div class="prose">{{ .Content }}</div>
+    {{ partial "publication_coverage.html" . }}
     {{ partial "book_reviews.html" . }}
     {{ partial "related_finder.html" . }}
   </article>

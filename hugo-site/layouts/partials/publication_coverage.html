@@ -1,0 +1,17 @@
+{{- with .Params.coverage -}}
+<section class="publication-coverage" id="coverage">
+  <h2>Selected Coverage</h2>
+  <ul class="coverage-list">
+    {{- range . }}
+    {{- $item := . }}
+    <li>
+      {{- with $item.url -}}
+      <a href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ $item.outlet }}</a>
+      {{- else -}}
+      <span>{{ $item.outlet }}</span>
+      {{- end -}}
+    </li>
+    {{- end }}
+  </ul>
+</section>
+{{- end -}}

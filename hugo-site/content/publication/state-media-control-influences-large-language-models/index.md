@@ -30,6 +30,15 @@ links:
   url: https://www.nature.com/articles/d41586-026-01486-9
 - name: Website
   url: https://state-media-influence-llm.github.io/
+coverage:
+- outlet: The New York Times
+- outlet: The Wall Street Journal
+- outlet: The Washington Post
+- outlet: Vox
+- outlet: CNBC Squawk Box
+- outlet: NPR
+- outlet: The Economist
+- outlet: The Atlantic
 tags:
 - "Generative AI & LLMs"
 - "Media & Information Environments"
