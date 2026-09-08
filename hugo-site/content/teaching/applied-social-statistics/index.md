@@ -10,7 +10,7 @@ syllabus_keywords: []
 ---
 
 <div class="legacy-course-actions">
-  <a class="btn primary" href="/files/teaching/soc500/2024/soc500syllabus2024.pdf">Read the 2024 Syllabus</a>
+  <a class="btn primary" href="/files/teaching/soc500/2026/soc500syllabus2026.pdf">Read the 2026 Syllabus</a>
   <a class="btn secondary" href="#materials">Materials</a>
 </div>
 
@@ -58,6 +58,11 @@ syllabus_keywords: []
 <p>I have included both slide and handout forms of the lectures. They are intended to be viewed in slide form and while I have tried my best, the handouts do not always do justice to what is intended on the slides. For precept materials there are typically slides and occasionally additional materials. Materials from older versions of the class are below the most recent iteration.</p>
 
 <p>If you see a typo or other error- please email me!</p>
+
+<section class="legacy-course-year">
+  <h2>2026</h2>
+  <p class="legacy-course-syllabi"><a class="text-btn" href="/files/teaching/soc500/2026/soc500syllabus2026.pdf">Syllabus</a></p>
+</section>
 
 <section class="legacy-course-year">
   <h2>2024</h2>
