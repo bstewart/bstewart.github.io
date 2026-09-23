@@ -32,13 +32,23 @@ links:
   url: https://state-media-influence-llm.github.io/
 coverage:
 - outlet: The New York Times
+  url: https://www.nytimes.com/2026/08/17/world/asia/china-ai-data-chatbots.html
 - outlet: The Wall Street Journal
+  url: https://www.wsj.com/world/china/the-hidden-chinese-influence-in-ai-c2837047
 - outlet: The Washington Post
+  url: https://www.washingtonpost.com/business/2026/07/16/artificial-intelligence-chatbots-censorship-bias-free-speech/e1ae1260-8101-11f1-8a16-393bd03340b0_story.html
 - outlet: Vox
+  url: https://www.vox.com/politics/489191/chatgpt-claude-china-bias-ai
 - outlet: CNBC Squawk Box
+  url: https://www.cnbc.com/video/2026/05/15/nyus-joshua-tucker-on-the-politics-of-training-ai.html
 - outlet: NPR
+  url: https://www.npr.org/2026/08/30/nx-s1-5876436/chatbots-search-propaganda
 - outlet: The Economist
+  url: https://www.economist.com/briefing/2026/06/25/ai-models-values-are-very-different-from-most-peoples
 - outlet: The Atlantic
+  url: https://www.theatlantic.com/international/2026/07/xi-jinping-censorship-ai-training/687696/
+- outlet: Prospect
+  url: https://www.prospectmagazine.co.uk/ideas/technology/75020/ai-learned-to-love-chinese-communist-party-anthropic-openai
 tags:
 - "Generative AI & LLMs"
 - "Media & Information Environments"
